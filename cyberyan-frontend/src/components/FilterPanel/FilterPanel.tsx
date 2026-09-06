@@ -67,7 +67,6 @@ export function FilterPanel({ filters, setFilter, clearFilters, activeFilterCoun
           )}
         </div>
       ))}
-
       <p className={styles.hint}>Filters combine — a skill and a job title narrow together.</p>
     </aside>
   );

@@ -1,17 +1,3 @@
-/**
- * The raw CSV (data/300_user_linkedin.csv) has several columns whose cell
- * value is a *Python* literal, e.g.:
- *   skills     -> "['react', 'node.js']"
- *   experience -> "[{'company': {'name': 'acme', ...}, 'title': {...}}]"
- *
- * That's Python's repr() of a list/dict — not JSON (single quotes, `None`,
- * `True`/`False`, and individual strings can be single- OR double-quoted
- * depending on their own content). This module parses that syntax directly
- * with a small hand-written recursive-descent parser, so we never need to
- * `eval()` untrusted text or pre-convert the dataset with a separate script/
- * language — the Node/TypeScript backend reads the CSV as-is.
- */
-
 class PythonLiteralParser {
   private input: string;
   private pos = 0;
@@ -94,7 +80,6 @@ class PythonLiteralParser {
         this.pos++;
         this.skipWhitespace();
         if (this.peek() === ("]" as string)) {
-          // trailing comma
           break;
         }
         continue;
@@ -107,7 +92,6 @@ class PythonLiteralParser {
     return items;
   }
 
-  /** Python tuples `(a, b)` — treated as arrays, same as lists. */
   private parseTuple(): unknown[] {
     this.expect("(");
     const items: unknown[] = [];
@@ -225,13 +209,6 @@ class PythonLiteralParser {
   }
 }
 
-/**
- * Parses a Python literal (list/dict/string/number/None/True/False) from a
- * CSV cell. Returns `undefined` (never throws) if the cell is empty or the
- * content doesn't parse — callers should fall back to a sensible default
- * (e.g. `[]`) rather than fail the whole row, since a handful of rows in
- * this dataset have corrupted/shifted columns from the original export.
- */
 export function tryParsePythonLiteral(raw: string | undefined): unknown {
   if (raw === undefined) return undefined;
   const trimmed = raw.trim();

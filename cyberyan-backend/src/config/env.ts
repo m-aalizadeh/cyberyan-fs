@@ -8,17 +8,12 @@ interface EnvConfig {
   nodeEnv: string;
 }
 
-/**
- * Centralized, typed access to environment variables.
- * Fails fast if something required is missing, instead of
- * letting `undefined` leak into the rest of the app.
- */
 function getEnv(): EnvConfig {
   const mongoUri = process.env.MONGO_URI;
 
   if (!mongoUri) {
     throw new Error(
-      "Missing required environment variable: MONGO_URI. Did you copy .env.example to .env?"
+      "Missing required environment variable: MONGO_URI"
     );
   }
 

@@ -59,12 +59,6 @@ const ProfileSchema = new Schema<ProfileDocument>(
   { timestamps: true }
 );
 
-/**
- * Single compound text index -> powers the free-text "keyword" search
- * (GET /api/profiles/search?keyword=...) across the fields a recruiter
- * would actually type a keyword against. Weights bias matches on
- * name/job title/skills above a match buried in the long `summary`.
- */
 ProfileSchema.index(
   {
     fullName: "text",
@@ -89,7 +83,6 @@ ProfileSchema.index(
   }
 );
 
-// Supporting indexes for the discrete filters (fast case-insensitive filtering).
 ProfileSchema.index({ skills: 1 });
 ProfileSchema.index({ jobTitle: 1 });
 ProfileSchema.index({ industry: 1 });

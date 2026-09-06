@@ -7,10 +7,6 @@ const DEFAULT_PAGE = 1;
 const DEFAULT_LIMIT = 20;
 const MAX_LIMIT = 100;
 
-/**
- * Escapes user input before it's dropped into a RegExp, so a keyword like
- * "c++" or "(react)" can't throw or be interpreted as regex syntax.
- */
 function escapeRegex(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
@@ -19,11 +15,7 @@ function partialMatch(value: string): RegExp {
   return new RegExp(escapeRegex(value.trim()), "i");
 }
 
-/**
- * Service layer: translates an HTTP-shaped query object into a Mongo
- * filter and pagination options, and applies business rules (limit
- * clamping, defaults). Controllers stay thin; repository stays dumb.
- */
+
 export class ProfileService {
   buildFilter(query: ProfileSearchQuery): {
     mongoFilter: FilterQuery<ProfileDocument>;
@@ -38,23 +30,18 @@ export class ProfileService {
       hasTextSearch = true;
     }
 
-    // Filter 1: skill — matches if ANY skill in the profile's skills array
-    // partially matches the requested skill (case-insensitive).
     if (query.skill && query.skill.trim().length > 0) {
       and.push({ skills: { $elemMatch: { $regex: partialMatch(query.skill) } } });
     }
 
-    // Filter 2: job title — partial, case-insensitive match.
     if (query.jobTitle && query.jobTitle.trim().length > 0) {
       and.push({ jobTitle: { $regex: partialMatch(query.jobTitle) } });
     }
 
-    // Bonus filter: industry.
     if (query.industry && query.industry.trim().length > 0) {
       and.push({ industry: { $regex: partialMatch(query.industry) } });
     }
 
-    // Bonus filter: location (matches city/region/country string).
     if (query.location && query.location.trim().length > 0) {
       and.push({ locationName: { $regex: partialMatch(query.location) } });
     }

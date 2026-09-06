@@ -3,16 +3,9 @@ import { ProfileModel, ProfileDocument } from "../models/profile.model";
 
 export interface BuiltFilter {
   mongoFilter: FilterQuery<ProfileDocument>;
-  /** true when a $text keyword search is part of the filter (affects sort/projection) */
   hasTextSearch: boolean;
 }
 
-/**
- * Repository: the only layer that talks to Mongoose/MongoDB directly.
- * Controllers/services never import the model directly — this keeps
- * persistence concerns isolated from business logic, so the database
- * could be swapped later without touching the service layer.
- */
 export class ProfileRepository {
   async findMany(
     filter: FilterQuery<ProfileDocument>,

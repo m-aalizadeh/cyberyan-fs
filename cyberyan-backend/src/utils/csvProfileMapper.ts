@@ -1,7 +1,6 @@
 import { tryParsePythonLiteral } from "./pythonLiteral";
 import { IEducation, IExperience, IProfile } from "../types/profile.types";
 
-/** A single row from csv-parse with `columns: true` — header -> cell value. */
 export type RawCsvRow = Record<string, string>;
 
 function str(row: RawCsvRow, key: string): string | null {
@@ -18,7 +17,6 @@ function num(row: RawCsvRow, key: string): number | null {
   return Number.isNaN(parsed) ? null : parsed;
 }
 
-/** Parses a cell expected to hold a Python list literal; falls back to []. */
 function listField(row: RawCsvRow, key: string): unknown[] {
   const parsed = tryParsePythonLiteral(row[key]);
   return Array.isArray(parsed) ? parsed : [];
@@ -72,11 +70,6 @@ function mapEmails(row: RawCsvRow): string[] {
     .filter((address): address is string => typeof address === "string");
 }
 
-/**
- * Maps one raw CSV row (as produced by csv-parse with `columns: true`)
- * straight into our Mongoose-shaped profile document. This is the only
- * place that knows about the source CSV's column names.
- */
 export function mapCsvRowToProfile(row: RawCsvRow): IProfile {
   return {
     fullName: str(row, "full_name"),

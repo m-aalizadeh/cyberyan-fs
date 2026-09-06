@@ -19,7 +19,6 @@ export default function App() {
   return (
     <div className={styles.app}>
       <Header totalProfiles={search.pagination?.total ?? null} />
-
       <div className={styles.body}>
         <button
           type="button"
@@ -34,7 +33,6 @@ export default function App() {
             </span>
           )}
         </button>
-
         <div
           className={`${styles.sidebar} ${isMobileFiltersOpen ? styles.sidebarOpen : ""}`}
         >
@@ -46,13 +44,11 @@ export default function App() {
             meta={meta}
           />
         </div>
-
         <main className={styles.main}>
           <SearchBar
             value={search.filters.keyword}
             onChange={(v) => search.setFilter("keyword", v)}
           />
-
           <div className={styles.resultsArea} aria-live="polite">
             <ProfileList
               results={search.results}
@@ -68,7 +64,6 @@ export default function App() {
           </div>
         </main>
       </div>
-
       <ProfileDetail
         profileId={openProfileId}
         onClose={() => setOpenProfileId(null)}

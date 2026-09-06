@@ -9,7 +9,6 @@ interface UseProfileDetailResult {
   error: string | null;
 }
 
-/** Fetches full profile detail by id whenever `id` changes; clears state when `id` is null. */
 export function useProfileDetail(id: string | null): UseProfileDetailResult {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [isLoading, setIsLoading] = useState(false);

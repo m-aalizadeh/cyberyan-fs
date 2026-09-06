@@ -1,16 +1,3 @@
-/**
- * Seeds MongoDB directly from the raw dataset file:
- *   data/300_user_linkedin.csv
- *
- * That file IS the reference data — a CSV export where several columns
- * (skills, experience, education, emails, interests, certifications,
- * languages) hold stringified Python literals (e.g. "['react', 'node.js']").
- * We parse the CSV structure with `csv-parse` and those Python-literal
- * cells with our own parser (src/utils/pythonLiteral.ts) — no separate
- * conversion step, no other language involved; it's read as-is at seed time.
- *
- * Run with: npm run seed
- */
 import fs from "fs";
 import path from "path";
 import { parse } from "csv-parse/sync";

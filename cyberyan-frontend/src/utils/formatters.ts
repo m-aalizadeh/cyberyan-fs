@@ -1,11 +1,6 @@
 const TAB_COLORS = ["ochre", "clay", "slate", "plum", "moss"] as const;
 export type TabColor = (typeof TAB_COLORS)[number];
 
-/**
- * Deterministically maps an industry string to one of a small fixed set of
- * tab colors, so the same industry always renders with the same color
- * (a real index/catalog signal, not a random decoration).
- */
 export function industryTabColor(industry: string | null): TabColor {
   if (!industry) return "slate";
   let hash = 0;

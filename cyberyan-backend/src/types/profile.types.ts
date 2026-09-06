@@ -45,11 +45,6 @@ export interface IProfile {
   experience: IExperience[];
 }
 
-/**
- * Query params accepted by GET /api/profiles/search
- * `keyword` powers free-text search; the rest are optional filters.
- * PDF requires at least 2 filters (e.g. skill + job title) — we support four.
- */
 export interface ProfileSearchQuery {
   keyword?: string;
   skill?: string;

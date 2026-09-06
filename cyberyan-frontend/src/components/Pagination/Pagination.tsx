@@ -65,7 +65,6 @@ export function Pagination({ pagination, onPageChange }: PaginationProps) {
   );
 }
 
-/** Builds a compact page list like [1, "…", 4, 5, 6, "…", 12]. */
 function buildPageNumbers(current: number, total: number): Array<number | "…"> {
   const delta = 1;
   const pages: Array<number | "…"> = [];

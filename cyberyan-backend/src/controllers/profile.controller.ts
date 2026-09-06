@@ -19,10 +19,7 @@ function parseSearchQuery(req: Request): ProfileSearchQuery {
 }
 
 export const profileController = {
-  /**
-   * GET /api/profiles/search
-   * Query params: keyword, skill, jobTitle, industry, location, page, limit
-   */
+
   async search(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const query = parseSearchQuery(req);
@@ -36,7 +33,6 @@ export const profileController = {
     }
   },
 
-  /** GET /api/profiles/filters/meta — distinct values to power frontend dropdowns */
   async filterMeta(_req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const meta = await profileService.getFilterMeta();
@@ -46,7 +42,6 @@ export const profileController = {
     }
   },
 
-  /** GET /api/profiles/:id */
   async getById(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { id } = req.params;

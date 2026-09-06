@@ -42,9 +42,6 @@ export function useProfileSearch(): UseProfileSearchResult {
   const [hasSearched, setHasSearched] = useState(false);
   const [retryToken, setRetryToken] = useState(0);
 
-  // Only the free-text keyword is debounced — dropdown/select filters
-  // (skill, jobTitle, industry) apply immediately since they're discrete
-  // choices, not something the person is still typing.
   const debouncedKeyword = useDebouncedValue(filters.keyword, KEYWORD_DEBOUNCE_MS);
 
   const requestIdRef = useRef(0);
@@ -74,7 +71,7 @@ export function useProfileSearch(): UseProfileSearchResult {
     profileApi
       .search({ ...effectiveFilters, page, limit: PAGE_SIZE })
       .then((response) => {
-        if (requestId !== requestIdRef.current) return; // a newer request superseded this one
+        if (requestId !== requestIdRef.current) return;
         setResults(response.data);
         setPagination(response.pagination);
         setHasSearched(true);
@@ -89,7 +86,6 @@ export function useProfileSearch(): UseProfileSearchResult {
         if (requestId !== requestIdRef.current) return;
         setIsLoading(false);
       });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [effectiveFilters, page, retryToken]);
 
   return {
