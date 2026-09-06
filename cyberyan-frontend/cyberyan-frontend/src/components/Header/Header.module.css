@@ -1,0 +1,35 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper-raised);
+}
+
+.mark {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: 22px;
+  letter-spacing: 0.01em;
+}
+
+.subtitle {
+  margin-top: 2px;
+  color: var(--ink-muted);
+  font-size: 13.5px;
+}
+
+@media (max-width: 640px) {
+  .header {
+    padding: var(--space-4);
+    gap: var(--space-3);
+  }
+
+  .title {
+    font-size: 19px;
+  }
+}

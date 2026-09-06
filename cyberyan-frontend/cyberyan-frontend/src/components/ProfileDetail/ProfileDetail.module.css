@@ -1,0 +1,258 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  border: none;
+  background: rgba(33, 38, 31, 0.35);
+  cursor: default;
+  animation: fadeIn 0.15s ease-out;
+}
+
+.panel {
+  position: relative;
+  width: min(480px, 100%);
+  height: 100%;
+  background: var(--paper);
+  overflow-y: auto;
+  box-shadow: -8px 0 24px rgba(33, 38, 31, 0.12);
+  animation: slideIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(24px);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop,
+  .panel {
+    animation: none;
+  }
+}
+
+.panelHeader {
+  position: relative;
+  padding: var(--space-6) var(--space-5) var(--space-5);
+  background: var(--paper-raised);
+  border-bottom: 1px solid var(--rule);
+  border-top: 4px solid var(--tab-slate);
+}
+
+.panelHeader[data-tab="ochre"] {
+  border-top-color: var(--tab-ochre);
+}
+.panelHeader[data-tab="clay"] {
+  border-top-color: var(--tab-clay);
+}
+.panelHeader[data-tab="slate"] {
+  border-top-color: var(--tab-slate);
+}
+.panelHeader[data-tab="plum"] {
+  border-top-color: var(--tab-plum);
+}
+.panelHeader[data-tab="moss"] {
+  border-top-color: var(--tab-moss);
+}
+
+.closeButton {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  border: 1px solid var(--rule-strong);
+  background: var(--paper);
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  font-size: 12px;
+  color: var(--ink-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.closeButton:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--paper-sunken);
+  color: var(--ink-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  margin-bottom: var(--space-3);
+}
+
+.name {
+  font-size: 20px;
+}
+
+.role {
+  margin-top: 4px;
+  color: var(--ink-muted);
+  font-size: 14px;
+}
+
+.panelBody {
+  padding: var(--space-5);
+}
+
+.status {
+  color: var(--ink-muted);
+  font-size: 14px;
+}
+
+.statusError {
+  color: var(--danger);
+  font-size: 14px;
+}
+
+.section {
+  margin-bottom: var(--space-6);
+}
+
+.sectionTitle {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink-muted);
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--rule);
+}
+
+.factGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3) var(--space-4);
+  margin: 0 0 var(--space-3);
+}
+
+.fact {
+  margin: 0;
+}
+
+.factLabel {
+  font-size: 11px;
+  color: var(--ink-faint);
+}
+
+.factValue {
+  margin: 2px 0 0;
+  font-size: 13.5px;
+  color: var(--ink);
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.summary {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--ink-muted);
+  margin-top: var(--space-3);
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tag {
+  font-size: 12px;
+  color: var(--accent-deep);
+  background: var(--accent-tint);
+  border-radius: var(--radius-sm);
+  padding: 3px 8px;
+}
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.timelineItem {
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.timelineItem:last-child {
+  border-bottom: none;
+}
+
+.timelineTitle {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.timelineSub {
+  margin-top: 2px;
+  font-size: 12.5px;
+  color: var(--ink-muted);
+}
+
+.timelineDate {
+  margin-top: 4px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--ink-faint);
+}
+
+.languages {
+  margin-top: var(--space-2);
+  font-size: 13px;
+  color: var(--ink-muted);
+}
+
+.contactList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 13.5px;
+}
+
+.contactList li {
+  padding: 6px 0;
+}
+
+.email {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--ink-muted);
+}
+
+@media (max-width: 560px) {
+  .panel {
+    width: 100%;
+  }
+
+  .factGrid {
+    grid-template-columns: 1fr;
+  }
+}
