@@ -10,11 +10,6 @@ export class ApiError extends Error {
   }
 }
 
-/**
- * Thin fetch wrapper: builds the URL, parses JSON, and turns both network
- * failures and non-2xx responses into a single `ApiError` type that
- * components/hooks can branch on without knowing about `fetch` internals.
- */
 export async function apiGet<T>(path: string, params?: Record<string, string | number | undefined>): Promise<T> {
   const url = new URL(`${BASE_URL}${path}`);
 
@@ -39,7 +34,7 @@ export async function apiGet<T>(path: string, params?: Record<string, string | n
       const body = await response.json();
       if (typeof body?.message === "string") message = body.message;
     } catch {
-      // response wasn't JSON — keep the generic message
+
     }
     throw new ApiError(message, response.status);
   }
