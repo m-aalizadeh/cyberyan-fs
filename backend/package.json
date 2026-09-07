@@ -1,7 +1,7 @@
 {
-  "name": "cyberyan-linkedin-search-backend",
+  "name": "linkedin-search-backend",
   "version": "1.0.0",
-  "description": "Backend API for searching and filtering a LinkedIn profiles dataset (Cyberyan full-stack task)",
+  "description": "Backend API for searching and filtering a LinkedIn profiles dataset",
   "main": "dist/server.js",
   "scripts": {
     "dev": "nodemon --watch src --ext ts --exec ts-node src/server.ts",

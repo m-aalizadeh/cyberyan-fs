@@ -1,7 +1,7 @@
 {
-  "name": "cyberyan-linkedin-search-frontend",
+  "name": "linkedin-search-frontend",
   "version": "1.0.0",
-  "description": "Frontend for the Cyberyan LinkedIn dataset search task — search, filter, and browse candidate profiles",
+  "description": "Frontend for the LinkedIn dataset search — search, filter, and browse candidate profiles",
   "type": "module",
   "scripts": {
     "dev": "vite",
