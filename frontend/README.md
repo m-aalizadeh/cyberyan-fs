@@ -1,11 +1,8 @@
-# Cyberyan Task — Talent Index (Frontend)
+# LinkedIn Dataset Search UI (Frontend)
 
-A search-and-filter UI for the LinkedIn profile dataset, built against the
-backend's `GET /api/profiles/search`, `GET /api/profiles/filters/meta`, and
-`GET /api/profiles/:id` endpoints.
+A search-and-filter UI for the LinkedIn profile dataset.
 
 Stack: **React + TypeScript + Vite**, plain CSS Modules (no UI framework)
-so every visual decision is deliberate rather than default-template.
 
 ## Project structure
 
@@ -26,8 +23,6 @@ src/
 
 ```bash
 npm install
-cp .env.example .env
-
 npm run dev
 ```
 

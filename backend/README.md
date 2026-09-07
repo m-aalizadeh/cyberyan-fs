@@ -1,4 +1,4 @@
-# Cyberyan Task — LinkedIn Dataset Search API (Backend)
+# LinkedIn Dataset Search API (Backend)
 
 Backend-only implementation of the LinkedIn profile dataset:
 a simple API to search and filter a dataset of ~336 LinkedIn profiles.
@@ -19,17 +19,16 @@ src/
   middlewares/    centralized error handling
   utils/
     pythonLiteral.ts    hand-written parser for the CSV's Python-literal cells
-    csvProfileMapper.ts maps one raw CSV row -> our Profile shape
   scripts/seed.ts parses data/300_user_linkedin.csv directly and loads it into MongoDB
   app.ts          Express app wiring (middleware, routes)
   server.ts       entrypoint: connect DB, start HTTP server
 data/
-  300_user_linkedin.csv   the reference dataset, used as-is (see below)
+  300_user_linkedin.csv   the reference dataset
 ```
 
 ## Setup & running
 
-**Prerequisites:** Node.js 18+, a MongoDB instance (local or Atlas).
+**Prerequisites:** Node.js 18+, a MongoDB instance.
 
 ```bash
 npm install
@@ -57,9 +56,6 @@ and combine with AND logic.
 | `page`     | Page number, default `1` |
 | `limit`    | Page size, default `20`, max `100` |
 
-The task asks for search plus filtering on at least 2 fields — `skill` and
-`jobTitle` are the two called out in the spec as an example; `industry` and
-`location` are included as a bonus since the data supports them cleanly.
 
 Example:
 
